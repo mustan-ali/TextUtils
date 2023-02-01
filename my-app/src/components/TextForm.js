@@ -8,9 +8,9 @@ export default function TextForm(props) {
     }
 
     const handleLowClick = () => {
-    console.log("Lowercase Button was clicked");
-    let newText = text.toLowerCase();
-    setText(newText);
+        console.log("Lowercase Button was clicked");
+        let newText = text.toLowerCase();
+        setText(newText);
     }
 
     const handleUpClick = () => {
@@ -22,12 +22,22 @@ export default function TextForm(props) {
     const [text, setText] = useState('Enter text here');
     return (
         <>
-            <h4>{props.heading}</h4>
-            <div className="mb-3">
-                <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
+            <div className="container">
+                <h4>{props.heading}</h4>
+                <div className="mb-3">
+                    <textarea className="form-control" id="myBox" rows="10" value={text} onChange={handleOnChange}></textarea>
+                </div>
+                <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Upper Case</button>
+                <button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to Lower Case</button>
             </div>
-            <button className="btn btn-primary me-1" onClick={handleUpClick}>Convert to Upper Case</button>
-            <button className="btn btn-primary me-1" onClick={handleLowClick}>Convert to Lower Case</button>
+
+            <div className="container my-3">
+                <h4>Text Summary</h4>
+                <p>Total Words: {text.split(" ").length}</p>
+                <p>Total Characters: {text.length}</p>
+                <p>Time required to Read: {0.008 * text.split(" ").length} minutes</p>
+            </div>
+
         </>
     )
 }
