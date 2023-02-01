@@ -19,6 +19,11 @@ export default function TextForm(props) {
         setText(newText);
     }
 
+    const handleClearClick = () => {
+    console.log("Clear Button was clicked");
+    let newText = '';
+    setText(newText);
+    }
     const [text, setText] = useState('Enter text here');
     return (
         <>
@@ -29,6 +34,7 @@ export default function TextForm(props) {
                 </div>
                 <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to Upper Case</button>
                 <button className="btn btn-primary mx-2" onClick={handleLowClick}>Convert to Lower Case</button>
+                <button className="btn btn-primary mx-2" onClick={handleClearClick}>Clear Text</button>
             </div>
 
             <div className="container my-3">
