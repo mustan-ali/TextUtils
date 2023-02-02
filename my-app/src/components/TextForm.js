@@ -18,23 +18,43 @@ export default function TextForm(props) {
         let newText = text.toUpperCase();
         setText(newText);
     }
-const handleRemoveSpaceClick = () => {
-    console.log("Remove Space Button was clicked");
-    let newText = text.split(/[ ]+/);
-    setText(newText.join(" "));
+
+    let vowelCount = 0;
+    const handleVowelCount = () => {
+
+        for (let i = 0; i < text.length; i++) {
+            if (text.charAt(i).match(/[aeiou]/i)) {
+                vowelCount++;
+            }
+        }
     }
 
-const handleCopyClick = () => {
-    console.log("Copy Button was clicked");
-    let text = document.getElementById('myBox');
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    let consonantCount = 0;
+    const ConsonantCount = () => {
+        for (let i = 0; i < text.length; i++) {
+            if (text.charAt(i).match(/[bcdfghjklmnpqrstvwxyz]/i)) {
+                consonantCount++;
+            }
+        }
+    }
+
+    const handleRemoveSpaceClick = () => {
+        console.log("Remove Space Button was clicked");
+        let newText = text.split(/[ ]+/);
+        setText(newText.join(" "));
+    }
+
+    const handleCopyClick = () => {
+        console.log("Copy Button was clicked");
+        let text = document.getElementById('myBox');
+        text.select();
+        navigator.clipboard.writeText(text.value);
     }
 
     const handleClearClick = () => {
-    console.log("Clear Button was clicked");
-    let newText = '';
-    setText(newText);
+        console.log("Clear Button was clicked");
+        let newText = '';
+        setText(newText);
     }
     const [text, setText] = useState('Enter text here');
     return (
@@ -55,6 +75,10 @@ const handleCopyClick = () => {
                 <h4>Text Summary</h4>
                 <p>Total Words: {text.split(" ").length}</p>
                 <p>Total Characters: {text.length}</p>
+                {handleVowelCount()}
+                <p>Total Vowels: {vowelCount}</p>
+                {ConsonantCount()}
+                <p>Total Consonants: {consonantCount}</p>
                 <p>Time required to Read: {0.008 * text.split(" ").length} minutes</p>
             </div>
 
