@@ -11,12 +11,14 @@ export default function TextForm(props) {
         console.log("Lowercase Button was clicked");
         let newText = text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to lowercase", "success");
     }
 
     const handleUpClick = () => {
         console.log("Uppercase Button was clicked");
         let newText = text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to uppercase", "success");
     }
 
     let vowelCount = 0;
@@ -42,6 +44,7 @@ export default function TextForm(props) {
         console.log("Remove Space Button was clicked");
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra spaces removed", "success");
     }
 
     const handleCopyClick = () => {
@@ -49,12 +52,14 @@ export default function TextForm(props) {
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to clipboard", "success");
     }
 
     const handleClearClick = () => {
         console.log("Clear Button was clicked");
         let newText = '';
         setText(newText);
+        props.showAlert("Text cleared", "success");
     }
     const [text, setText] = useState('Enter text here');
     return (
