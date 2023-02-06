@@ -8,14 +8,12 @@ export default function TextForm(props) {
     }
 
     const handleLowClick = () => {
-        console.log("Lowercase Button was clicked");
         let newText = text.toLowerCase();
         setText(newText);
         props.showAlert("Converted to lowercase", "success");
     }
 
     const handleUpClick = () => {
-        console.log("Uppercase Button was clicked");
         let newText = text.toUpperCase();
         setText(newText);
         props.showAlert("Converted to uppercase", "success");
@@ -41,14 +39,12 @@ export default function TextForm(props) {
     }
 
     const handleRemoveSpaceClick = () => {
-        console.log("Remove Space Button was clicked");
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
         props.showAlert("Extra spaces removed", "success");
     }
 
     const handleCopyClick = () => {
-        console.log("Copy Button was clicked");
         let text = document.getElementById('myBox');
         text.select();
         navigator.clipboard.writeText(text.value);
@@ -57,7 +53,6 @@ export default function TextForm(props) {
     }
 
     const handleClearClick = () => {
-        console.log("Clear Button was clicked");
         let newText = '';
         setText(newText);
         props.showAlert("Text cleared", "success");
@@ -79,7 +74,7 @@ export default function TextForm(props) {
 
             <div className="container my-3" style={{ color: props.mode === 'dark' ? 'white' : 'black' }}>
                 <h4>Text Summary</h4>
-                <p className='my-1'><strong>Total Words:</strong> {text.split(" ").filter((element) => { return element.length !== 0 }).length}</p>
+                <p className='my-1'><strong>Total Words:</strong> {text.split(/\s+/).filter((element) => { return element.length !== 0 }).length}</p>
                 <p className='my-1'><strong>Total Characters:</strong> {text.length}</p>
                 {handleVowelCount()}
                 <p className='my-1'><strong>Total Vowels:</strong> {vowelCount}</p>
@@ -87,7 +82,6 @@ export default function TextForm(props) {
                 <p className='my-1'><strong>Total Consonants:</strong> {consonantCount}</p>
                 <p className='my-1'><strong>Time required to Read:</strong> {0.008 * text.split(" ").filter((element) => { return element.length !== 0 }).length} minutes</p>
             </div>
-
         </>
     )
 }
